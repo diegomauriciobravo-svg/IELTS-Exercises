@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IELTS Reading Exercise</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+    h1 { color: #2c3e50; }
+    .question { margin-top: 20px; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+    .result { margin-top: 30px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>IELTS Reading Exercise</h1>
+  <p>
+    Climate change is one of the most pressing issues of the 21st century.
+    Scientists agree that rising global temperatures are largely due to human
+    activities such as burning fossil fuels, deforestation, and intensive agriculture.
+    These activities release greenhouse gases, primarily carbon dioxide and methane,
+    which trap heat in the atmosphere.
+  </p>
+  <p>
+    The consequences are significant: melting ice caps, rising sea levels, and
+    increasingly severe weather events such as hurricanes, droughts, and floods.
+    Beyond environmental impacts, climate change also threatens food security,
+    public health, and economic stability.
+  </p>
+  <p>
+    International organizations, including the United Nations, have called for urgent
+    global cooperation. The Paris Agreement of 2015 represents a major step in
+    encouraging nations to reduce emissions and transition to renewable energy.
+    However, progress has been uneven, and many experts argue that stronger action
+    is required to limit warming to 1.5°C above pre-industrial levels.
+  </p>
+  <p>
+    Ultimately, addressing climate change requires both systemic policy changes and
+    individual efforts. Governments, industries, and citizens must all play a role in
+    shaping a sustainable future.
+  </p>
+
+  <div id="quiz"></div>
+  <button onclick="checkAnswers()">Submit</button>
+  <div class="result" id="result"></div>
+
+  <script>
+    const questions = [
+      {q: "1. What is the primary cause of rising global temperatures?",
+       options: ["A. Natural cycles", "B. Human activities", "C. Ocean currents", "D. Solar flares"],
+       answer: "B"},
+      {q: "2. Which gases are mainly responsible for trapping heat in the atmosphere?",
+       options: ["A. Oxygen and nitrogen", "B. Hydrogen and helium", "C. Carbon dioxide and methane", "D. Ozone and argon"],
+       answer: "C"},
+      {q: "3. Which is NOT mentioned as a consequence of climate change?",
+       options: ["A. Rising sea levels", "B. Increased volcanic activity", "C. Severe weather events", "D. Melting ice caps"],
+       answer: "B"},
+      {q: "4. What global agreement in 2015 aimed to address climate change?",
+       options: ["A. Kyoto Protocol", "B. Paris Agreement", "C. Rio Summit", "D. Montreal Protocol"],
+       answer: "B"},
+      {q: "5. What temperature increase are experts trying to limit warming to?",
+       options: ["A. 3°C", "B. 2°C", "C. 1.5°C", "D. 0.5°C"],
+       answer: "C"},
+      {q: "6. Which is a potential impact of climate change mentioned in the passage?",
+       options: ["A. Economic instability", "B. Decreased literacy rates", "C. Population growth", "D. Decline in technology"],
+       answer: "A"},
+      {q: "7. According to the passage, what must nations transition towards?",
+       options: ["A. More deforestation", "B. Renewable energy", "C. Nuclear weapons", "D. Larger cities"],
+       answer: "B"},
+      {q: "8. Which international organization is mentioned?",
+       options: ["A. NATO", "B. European Union", "C. United Nations", "D. World Bank"],
+       answer: "C"},
+      {q: "9. What role do individuals play?",
+       options: ["A. None", "B. Relocate to colder areas", "C. Consume more fossil fuels", "D. Contribute to sustainable future"],
+       answer: "D"},
+      {q: "10. What is the main idea of the passage?",
+       options: ["A. Climate change is caused by solar flares",
+                 "B. Climate change is not global",
+                 "C. Climate change requires urgent collective action",
+                 "D. Climate change has no economic impact"],
+       answer: "C"}
+    ];
+
+    const quizDiv = document.getElementById("quiz");
+
+    questions.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `<p>${q.q}</p>` + q.options.map(opt =>
+        `<label><input type="radio" name="q${i}" value="${opt.charAt(0)}"> ${opt}</label><br>`
+      ).join("");
+      quizDiv.appendChild(div);
+    });
+
+    function checkAnswers() {
+      let score = 0;
+      questions.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === q.answer) {
+          score++;
+        }
+      });
+      document.getElementById("result").innerText =
+        `You scored ${score} out of ${questions.length}`;
+    }
+  </script>
+</body>
+</html>
